@@ -16,6 +16,8 @@ public class AddIngredientActivity extends AppCompatActivity {
     private EditText etIngredientName;
     private EditText etQuantity;
     private EditText etUnit;
+    private EditText etExpiryDate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class AddIngredientActivity extends AppCompatActivity {
         etIngredientName = findViewById(R.id.etIngredientName);
         etQuantity = findViewById(R.id.etQuantity);
         etUnit = findViewById(R.id.etUnit);
+        etUnit = findViewById(R.id.etUnit);
+        etExpiryDate = findViewById(R.id.etExpiryDate);
 
         Button btnSaveIngredient = findViewById(R.id.btnSaveIngredient);
         Button btnCancel = findViewById(R.id.btnCancel);
@@ -86,10 +90,28 @@ public class AddIngredientActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(
-            this,
-            "Ingredient details are valid",
-            Toast.LENGTH_SHORT
-        ).show();
+        String expiryDate = etExpiryDate.getText().toString().trim();
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        long result = databaseHelper.addPantryItem(
+            name,
+            quantity,
+            unit,
+            expiryDate
+        );
+
+        if (result != -1) {
+            Toast.makeText(
+                this,
+                "Ingredient saved",
+                Toast.LENGTH_SHORT
+            ).show();
+            finish();
+        } else {
+            Toast.makeText(
+                this,
+                "Could not save ingredient",
+                Toast.LENGTH_SHORT
+            ).show();
+        }
     }
 }

@@ -35,6 +35,14 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
+    <!-- List from the database to display current pantry items -->
+    <ListView
+        android:id="@+id/listPantry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btnAddIngredient"
         android:layout_width="match_parent"

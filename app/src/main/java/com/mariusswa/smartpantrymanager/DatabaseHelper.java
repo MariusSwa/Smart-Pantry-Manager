@@ -3,6 +3,8 @@ package com.mariusswa.smartpantrymanager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.content.ContentValues;
+import android.database.Cursor;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -41,5 +43,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     db.execSQL("DROP TABLE IF EXISTS " + TABLE_PANTRY);
     onCreate(db);
+  }
+
+  public long addPantryItem(String name, double quantity, String unit, String expiryDate) {
+
+    SQLiteDatabase db = this.getWritableDatabase();
+
+    ContentValues values = new ContentValues();
+    values.put(COLUMN_NAME, name);
+    values.put(COLUMN_QUANTITY, quantity);
+    values.put(COLUMN_UNIT, unit);
+
+    if (expiryDate == null || expiryDate.trim().isEmpty()) {
+      values.putNull(COLUMN_EXPIRY_DATE);
+    } else {
+      values.put(COLUMN_EXPIRY_DATE, expiryDate);
+    }
+    long result = db.insert(TABLE_PANTRY, null, values);
+    db.close();
+    return result;
+  }
+
+  public Cursor getAllPantryItems() {
+    SQLiteDatabase db = this.getReadableDatabase();
+    return db.query(
+        TABLE_PANTRY,
+        null,
+        null,
+        null,
+        null,
+        null,
+        COLUMN_NAME + " ASC"
+    );
   }
 }

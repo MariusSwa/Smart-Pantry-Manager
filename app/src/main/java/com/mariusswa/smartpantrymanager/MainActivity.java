@@ -9,6 +9,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.widget.Button;
+import android.database.Cursor;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,5 +40,49 @@ public class MainActivity extends AppCompatActivity {
                     new Intent(MainActivity.this, AddIngredientActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadPantryItems();
+    }
+
+    private void loadPantryItems() {
+        TextView tvEmptyPantry = findViewById(R.id.tvEmptyPantry);
+        ListView listPantry = findViewById(R.id.listPantry);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        Cursor cursor = databaseHelper.getAllPantryItems();
+        ArrayList<String> pantryItems = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(
+                    cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME)
+                );
+                double quantity = cursor.getDouble(
+                    cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_QUANTITY)
+                );
+                String unit = cursor.getString(
+                    cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_UNIT)
+                );
+                pantryItems.add(name + " - " + quantity + " " + unit);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        if (pantryItems.isEmpty()) {
+            tvEmptyPantry.setVisibility(View.VISIBLE);
+            listPantry.setVisibility(View.GONE);
+        } else {
+            tvEmptyPantry.setVisibility(View.GONE);
+            listPantry.setVisibility(View.VISIBLE);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                pantryItems
+            );
+            listPantry.setAdapter(adapter);
+        }
     }
 }
