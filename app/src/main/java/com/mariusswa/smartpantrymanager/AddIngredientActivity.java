@@ -17,7 +17,7 @@ public class AddIngredientActivity extends AppCompatActivity {
     private EditText etQuantity;
     private EditText etUnit;
     private EditText etExpiryDate;
-
+    private int editingItemId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,29 @@ public class AddIngredientActivity extends AppCompatActivity {
         etUnit = findViewById(R.id.etUnit);
         etUnit = findViewById(R.id.etUnit);
         etExpiryDate = findViewById(R.id.etExpiryDate);
+        editingItemId = getIntent().getIntExtra("ITEM_ID", -1);
 
+        // Multi option button for save and update
         Button btnSaveIngredient = findViewById(R.id.btnSaveIngredient);
+
+        if (editingItemId != -1) {
+
+            String name = getIntent().getStringExtra("ITEM_NAME");
+            double quantity = getIntent().getDoubleExtra("ITEM_QUANTITY", 0);
+            String unit = getIntent().getStringExtra("ITEM_UNIT");
+            String expiryDate = getIntent().getStringExtra("ITEM_EXPIRY");
+
+            etIngredientName.setText(name);
+            etQuantity.setText(String.valueOf(quantity));
+            etUnit.setText(unit);
+
+            if (expiryDate != null) {
+                etExpiryDate.setText(expiryDate);
+            }
+            btnSaveIngredient.setText("Update Ingredient");
+        }
+
+
         Button btnCancel = findViewById(R.id.btnCancel);
         btnSaveIngredient.setOnClickListener(v -> validateIngredient());
         btnCancel.setOnClickListener(v -> finish());
@@ -92,26 +113,52 @@ public class AddIngredientActivity extends AppCompatActivity {
 
         String expiryDate = etExpiryDate.getText().toString().trim();
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        long result = databaseHelper.addPantryItem(
-            name,
-            quantity,
-            unit,
-            expiryDate
-        );
 
-        if (result != -1) {
-            Toast.makeText(
-                this,
-                "Ingredient saved",
-                Toast.LENGTH_SHORT
-            ).show();
-            finish();
+        if (editingItemId == -1) {
+            long result = databaseHelper.addPantryItem(
+                name,
+                quantity,
+                unit,
+                expiryDate
+            );
+
+            if (result != -1) {
+                Toast.makeText(
+                    this,
+                    "Ingredient saved",
+                    Toast.LENGTH_SHORT
+                ).show();
+                finish();
+            } else {
+                Toast.makeText(
+                    this,
+                    "Could not save ingredient",
+                    Toast.LENGTH_SHORT
+                ).show();
+            }
         } else {
-            Toast.makeText(
-                this,
-                "Could not save ingredient",
-                Toast.LENGTH_SHORT
-            ).show();
+            int result = databaseHelper.updatePantryItem(
+                editingItemId,
+                name,
+                quantity,
+                unit,
+                expiryDate
+            );
+
+            if (result > 0) {
+                Toast.makeText(
+                    this,
+                    "Ingredient updated",
+                    Toast.LENGTH_SHORT
+                ).show();
+                finish();
+            } else {
+                Toast.makeText(
+                    this,
+                    "Could not update ingredient",
+                    Toast.LENGTH_SHORT
+                ).show();
+            }
         }
     }
 }
