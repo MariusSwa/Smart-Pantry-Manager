@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.app.DatePickerDialog;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AddIngredientActivity extends AppCompatActivity {
 
@@ -45,6 +48,7 @@ public class AddIngredientActivity extends AppCompatActivity {
         etUnit = findViewById(R.id.etUnit);
         etExpiryDate = findViewById(R.id.etExpiryDate);
         editingItemId = getIntent().getIntExtra("ITEM_ID", -1);
+        etExpiryDate.setOnClickListener(v -> showDatePicker());
 
         // Multi option button for save and update
         Button btnSaveIngredient = findViewById(R.id.btnSaveIngredient);
@@ -70,6 +74,33 @@ public class AddIngredientActivity extends AppCompatActivity {
         Button btnCancel = findViewById(R.id.btnCancel);
         btnSaveIngredient.setOnClickListener(v -> validateIngredient());
         btnCancel.setOnClickListener(v -> finish());
+    }
+
+    private void showDatePicker() {
+
+        Calendar calendar = Calendar.getInstance();
+
+        DatePickerDialog datePickerDialog =
+            new DatePickerDialog(
+                this,
+                (view, year, month, dayOfMonth) -> {
+
+                    String selectedDate = String.format(
+                        Locale.getDefault(),
+                        "%04d-%02d-%02d",
+                        year,
+                        month + 1,
+                        dayOfMonth
+                    );
+
+                    etExpiryDate.setText(selectedDate);
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            );
+
+        datePickerDialog.show();
     }
 
     private void validateIngredient() {

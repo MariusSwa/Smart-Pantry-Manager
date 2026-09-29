@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   //  Database name
   private static final String DATABASE_NAME = "smart_pantry.db";
   // Use versioning to add table later and keep the data present
-  private static final int DATABASE_VERSION = 3;
+  private static final int DATABASE_VERSION = 5;
 
   public static final String TABLE_PANTRY = "pantry";
 
@@ -65,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     db.execSQL(createRecipeIngredientsTable);
 
     seedRecipes(db);
+    seedPantry(db);
   }
 
   //  Runs the upgrade for the DB

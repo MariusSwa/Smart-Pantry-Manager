@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/pantry_light_pink"
     tools:context=".AddIngredientActivity">
 
     <LinearLayout
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:backgroundTint="@color/pantry_pink"
             android:text="Save Ingredient" />
 
         <Button
@@ -65,7 +67,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/pantry_pink"
             android:text="Cancel" />
+
+
 
     </LinearLayout>
 

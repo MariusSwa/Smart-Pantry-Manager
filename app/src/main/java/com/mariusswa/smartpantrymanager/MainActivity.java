@@ -10,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.widget.Button;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.List;
@@ -103,11 +102,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             tvEmptyPantry.setVisibility(View.GONE);
             listPantry.setVisibility(View.VISIBLE);
-            ArrayAdapter<PantryItem> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                pantryItems
-            );
+            PantryAdapter adapter =
+                new PantryAdapter(this, pantryItems);
+
+            listPantry.setAdapter(adapter);
 
             listPantry.setAdapter(adapter);
 

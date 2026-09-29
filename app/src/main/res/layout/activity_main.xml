@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/pantry_light_pink"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="My Pantry"
-        android:textSize="28sp"
+        android:textColor="#E91E63"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
@@ -22,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Keep track of the ingredients you have available."
         android:textSize="16sp" />
 
@@ -35,7 +39,6 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
-    <!-- List from the database to display current pantry items -->
     <ListView
         android:id="@+id/listPantry"
         android:layout_width="match_parent"
@@ -48,12 +51,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="#E91E63"
+        android:textColor="#FFFFFF"
         android:text="View Suggested Recipes" />
 
     <Button
         android:id="@+id/btnAddIngredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="#E91E63"
+        android:textColor="#FFFFFF"
         android:text="Add Ingredient" />
 
 </LinearLayout>
