@@ -16,11 +16,9 @@ import android.content.Intent;
 import java.util.List;
 
 public class SuggestedRecipesActivity extends AppCompatActivity {
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     EdgeToEdge.enable(this);
     setContentView(R.layout.activity_suggested_recipes);
 
@@ -43,31 +41,22 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
           return insets;
         }
     );
-
     loadSuggestedRecipes();
   }
 
   private void loadSuggestedRecipes() {
-
     TextView tvNoRecipes =
         findViewById(R.id.tvNoRecipes);
-
     ListView listRecipes =
         findViewById(R.id.listRecipes);
-
     DatabaseHelper databaseHelper =
         new DatabaseHelper(this);
-
     List<Recipe> recipes =
         databaseHelper.getSuggestedRecipes();
-
     if (recipes.isEmpty()) {
-
       tvNoRecipes.setVisibility(View.VISIBLE);
       listRecipes.setVisibility(View.GONE);
-
     } else {
-
       tvNoRecipes.setVisibility(View.GONE);
       listRecipes.setVisibility(View.VISIBLE);
 

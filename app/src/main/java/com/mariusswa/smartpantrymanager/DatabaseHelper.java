@@ -217,229 +217,342 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     long recipeId;
 
-    // 1. Scrambled Eggs
-    recipeId = addRecipe(db,
-        "Scrambled Eggs",
-        "Beat the eggs with milk. Melt butter in a pan. " +
-            "Add the egg mixture and cook while stirring until set.");
+    // 1. Cheese and Ham Tart
+    recipeId = addRecipe(
+        db,
+        "Cheese and Ham Tart",
+        "Mix the butter, flour, salt, mustard and pepper. "
+            + "Cook while stirring until golden. Add the milk gradually "
+            + "and continue stirring. Remove from the heat and stir in "
+            + "the remaining ingredients. Spoon into an ovenproof dish "
+            + "and bake at 190°C for about 30 minutes."
+    );
 
+    addRecipeIngredient(db, recipeId, "butter", 12.5, "ml");
+    addRecipeIngredient(db, recipeId, "flour", 25, "ml");
+    addRecipeIngredient(db, recipeId, "milk", 250, "ml");
+    addRecipeIngredient(db, recipeId, "ham", 250, "g");
+    addRecipeIngredient(db, recipeId, "cheese", 250, "g");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "milk", 50, "ml");
-    addRecipeIngredient(db, recipeId, "butter", 10, "g");
 
 
-    // 2. Cheese Omelette
-    recipeId = addRecipe(db,
-        "Cheese Omelette",
-        "Beat the eggs. Melt butter in a pan and add the eggs. " +
-            "Add cheese, fold the omelette and cook until done.");
+    // 2. Cheese and Bacon Tart
+    recipeId = addRecipe(
+        db,
+        "Cheese and Bacon Tart",
+        "Mix the butter, flour, salt, pepper and mustard over low heat. "
+            + "Add the milk gradually while stirring. Add the remaining "
+            + "ingredients, pour into an ovenproof dish and bake at "
+            + "180°C for about 45 minutes."
+    );
 
-    addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "cheese", 50, "g");
-    addRecipeIngredient(db, recipeId, "butter", 10, "g");
-
-
-    // 3. Pancakes
-    recipeId = addRecipe(db,
-        "Pancakes",
-        "Mix flour, milk and eggs into a smooth batter. " +
-            "Cook portions of batter in a lightly buttered pan.");
-
-    addRecipeIngredient(db, recipeId, "flour", 200, "g");
-    addRecipeIngredient(db, recipeId, "milk", 300, "ml");
-    addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "butter", 20, "g");
-
-
-    // 4. French Toast
-    recipeId = addRecipe(db,
-        "French Toast",
-        "Beat eggs and milk together. Dip bread into the mixture " +
-            "and fry in butter until golden on both sides.");
-
-    addRecipeIngredient(db, recipeId, "bread", 4, "slice");
-    addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "milk", 100, "ml");
-    addRecipeIngredient(db, recipeId, "butter", 20, "g");
-
-
-    // 5. Grilled Cheese
-    recipeId = addRecipe(db,
-        "Grilled Cheese",
-        "Place cheese between slices of bread. Butter the outside " +
-            "and fry until golden and the cheese has melted.");
-
-    addRecipeIngredient(db, recipeId, "bread", 2, "slice");
-    addRecipeIngredient(db, recipeId, "cheese", 50, "g");
-    addRecipeIngredient(db, recipeId, "butter", 10, "g");
-
-
-    // 6. Tomato Pasta
-    recipeId = addRecipe(db,
-        "Tomato Pasta",
-        "Cook the pasta. Fry onion in oil, add tomato and simmer. " +
-            "Combine the sauce with the cooked pasta.");
-
-    addRecipeIngredient(db, recipeId, "pasta", 200, "g");
-    addRecipeIngredient(db, recipeId, "tomato", 2, "item");
-    addRecipeIngredient(db, recipeId, "onion", 1, "item");
-    addRecipeIngredient(db, recipeId, "oil", 15, "ml");
-
-
-    // 7. Cheese Pasta
-    recipeId = addRecipe(db,
-        "Cheese Pasta",
-        "Cook the pasta. Stir in milk and grated cheese over low heat " +
-            "until the cheese melts and forms a sauce.");
-
-    addRecipeIngredient(db, recipeId, "pasta", 200, "g");
+    addRecipeIngredient(db, recipeId, "butter", 50, "g");
+    addRecipeIngredient(db, recipeId, "flour", 25, "g");
+    addRecipeIngredient(db, recipeId, "milk", 500, "ml");
+    addRecipeIngredient(db, recipeId, "bacon", 200, "g");
     addRecipeIngredient(db, recipeId, "cheese", 100, "g");
-    addRecipeIngredient(db, recipeId, "milk", 100, "ml");
-
-
-    // 8. Egg Fried Rice
-    recipeId = addRecipe(db,
-        "Egg Fried Rice",
-        "Fry onion in oil. Add cooked rice and stir well. " +
-            "Add beaten eggs and cook until the eggs are set.");
-
-    addRecipeIngredient(db, recipeId, "rice", 250, "g");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "onion", 1, "item");
-    addRecipeIngredient(db, recipeId, "oil", 15, "ml");
 
 
-    // 9. Tomato Rice
-    recipeId = addRecipe(db,
-        "Tomato Rice",
-        "Cook the rice. Fry onion and tomato in oil, then mix " +
-            "with the cooked rice.");
+    // 3. Cheese Meat Tart
+    recipeId = addRecipe(
+        db,
+        "Cheese Meat Tart",
+        "Mix the ingredients together and spread the mixture into a "
+            + "greased ovenproof dish. Bake until cooked through "
+            + "and golden."
+    );
 
-    addRecipeIngredient(db, recipeId, "rice", 250, "g");
+    addRecipeIngredient(db, recipeId, "minced meat", 500, "g");
+    addRecipeIngredient(db, recipeId, "cheese", 250, "g");
+    addRecipeIngredient(db, recipeId, "milk", 500, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 2, "item");
+
+
+    // 4. Meat Pizza
+    recipeId = addRecipe(
+        db,
+        "Meat Pizza",
+        "Mix the minced meat, breadcrumbs, egg and seasoning. "
+            + "Press into a greased baking dish to form the base. "
+            + "Arrange the tomato and onion over the meat base, "
+            + "top with cheese and bake until cooked and golden."
+    );
+
+    addRecipeIngredient(db, recipeId, "minced meat", 500, "g");
+    addRecipeIngredient(db, recipeId, "breadcrumbs", 125, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "tomato", 2, "item");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
-    addRecipeIngredient(db, recipeId, "oil", 15, "ml");
+    addRecipeIngredient(db, recipeId, "cheese", 125, "g");
 
 
-    // 10. Mashed Potatoes
-    recipeId = addRecipe(db,
-        "Mashed Potatoes",
-        "Boil potatoes until soft. Drain and mash with milk " +
-            "and butter until smooth.");
+    // 5. Meat Pie
+    recipeId = addRecipe(
+        db,
+        "Meat Pie",
+        "Prepare the meat mixture and place it in an ovenproof dish. "
+            + "Mix the topping ingredients, spread over the meat "
+            + "and bake until the topping is golden."
+    );
 
-    addRecipeIngredient(db, recipeId, "potato", 4, "item");
-    addRecipeIngredient(db, recipeId, "milk", 100, "ml");
-    addRecipeIngredient(db, recipeId, "butter", 30, "g");
-
-
-    // 11. Potato and Egg Hash
-    recipeId = addRecipe(db,
-        "Potato and Egg Hash",
-        "Dice the potatoes and fry with onion in oil until tender. " +
-            "Add eggs and cook until set.");
-
-    addRecipeIngredient(db, recipeId, "potato", 3, "item");
-    addRecipeIngredient(db, recipeId, "egg", 2, "item");
+    addRecipeIngredient(db, recipeId, "minced meat", 500, "g");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
-    addRecipeIngredient(db, recipeId, "oil", 20, "ml");
-
-
-    // 12. Tomato Omelette
-    recipeId = addRecipe(db,
-        "Tomato Omelette",
-        "Beat the eggs. Fry chopped tomato briefly in butter, " +
-            "add eggs and cook until set.");
-
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "tomato", 1, "item");
-    addRecipeIngredient(db, recipeId, "butter", 10, "g");
+    addRecipeIngredient(db, recipeId, "milk", 250, "ml");
+    addRecipeIngredient(db, recipeId, "cheese", 100, "g");
 
 
-    // 13. Cheese Toast
-    recipeId = addRecipe(db,
-        "Cheese Toast",
-        "Place grated cheese on bread and toast until the bread " +
-            "is crisp and the cheese has melted.");
+    // 6. Cheese Pie
+    recipeId = addRecipe(
+        db,
+        "Cheese Pie",
+        "Mix the ingredients together. Pour into a greased ovenproof "
+            + "dish and bake until set and golden brown."
+    );
 
-    addRecipeIngredient(db, recipeId, "bread", 2, "slice");
-    addRecipeIngredient(db, recipeId, "cheese", 60, "g");
-
-
-    // 14. Tomato Cheese Toast
-    recipeId = addRecipe(db,
-        "Tomato Cheese Toast",
-        "Top bread with sliced tomato and cheese. Toast until " +
-            "the cheese is melted.");
-
-    addRecipeIngredient(db, recipeId, "bread", 2, "slice");
-    addRecipeIngredient(db, recipeId, "tomato", 1, "item");
-    addRecipeIngredient(db, recipeId, "cheese", 60, "g");
-
-
-    // 15. Simple Rice
-    recipeId = addRecipe(db,
-        "Simple Rice",
-        "Rinse the rice and cook in water until tender. " +
-            "Drain any excess water before serving.");
-
-    addRecipeIngredient(db, recipeId, "rice", 200, "g");
-
-
-    // 16. Boiled Eggs
-    recipeId = addRecipe(db,
-        "Boiled Eggs",
-        "Place eggs in water, bring to the boil and cook until " +
-            "the desired firmness is reached.");
-
+    addRecipeIngredient(db, recipeId, "cheese", 250, "g");
+    addRecipeIngredient(db, recipeId, "milk", 250, "ml");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
+    addRecipeIngredient(db, recipeId, "flour", 125, "ml");
 
 
-    // 17. Buttered Pasta
-    recipeId = addRecipe(db,
-        "Buttered Pasta",
-        "Cook pasta until tender, drain and stir through butter.");
+    // 7. Chicken Pie
+    recipeId = addRecipe(
+        db,
+        "Chicken Pie",
+        "Combine the cooked chicken with the remaining filling "
+            + "ingredients. Place into an ovenproof dish and bake "
+            + "until hot and golden."
+    );
 
-    addRecipeIngredient(db, recipeId, "pasta", 200, "g");
-    addRecipeIngredient(db, recipeId, "butter", 20, "g");
-
-
-    // 18. Fried Potatoes
-    recipeId = addRecipe(db,
-        "Fried Potatoes",
-        "Slice the potatoes and fry in oil until golden and tender.");
-
-    addRecipeIngredient(db, recipeId, "potato", 3, "item");
-    addRecipeIngredient(db, recipeId, "oil", 30, "ml");
+    addRecipeIngredient(db, recipeId, "chicken", 500, "g");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 250, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 2, "item");
+    addRecipeIngredient(db, recipeId, "cheese", 100, "g");
 
 
-    // 19. Tomato and Onion Salad
-    recipeId = addRecipe(db,
-        "Tomato and Onion Salad",
-        "Slice the tomatoes and onion. Combine and drizzle with oil.");
+    // 8. Cheese and Onion Pie
+    recipeId = addRecipe(
+        db,
+        "Cheese and Onion Pie",
+        "Combine the cheese and onion mixture. Place into an "
+            + "ovenproof dish and bake until cooked through "
+            + "and golden."
+    );
 
+    addRecipeIngredient(db, recipeId, "cheese", 250, "g");
+    addRecipeIngredient(db, recipeId, "onion", 2, "item");
+    addRecipeIngredient(db, recipeId, "egg", 2, "item");
+    addRecipeIngredient(db, recipeId, "milk", 250, "ml");
+
+
+    // 9. Mackerel Dish
+    recipeId = addRecipe(
+        db,
+        "Mackerel Dish",
+        "Combine the mackerel with the remaining ingredients. "
+            + "Place the mixture in an ovenproof dish and bake "
+            + "until heated through and set."
+    );
+
+    addRecipeIngredient(db, recipeId, "mackerel", 400, "g");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+    addRecipeIngredient(db, recipeId, "egg", 2, "item");
+    addRecipeIngredient(db, recipeId, "milk", 250, "ml");
+
+
+    // 10. Ham Rolls
+    recipeId = addRecipe(
+        db,
+        "Ham Rolls",
+        "Prepare the filling and divide it between the slices of ham. "
+            + "Roll the ham around the filling, arrange in an "
+            + "ovenproof dish and bake until heated through."
+    );
+
+    addRecipeIngredient(db, recipeId, "ham", 250, "g");
+    addRecipeIngredient(db, recipeId, "cheese", 100, "g");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+
+
+    // 11. Meat Fritters
+    recipeId = addRecipe(
+        db,
+        "Meat Fritters",
+        "Mix the ingredients into a batter. Drop spoonfuls of the "
+            + "mixture into hot oil and fry until cooked and "
+            + "golden on both sides."
+    );
+
+    addRecipeIngredient(db, recipeId, "minced meat", 250, "g");
+    addRecipeIngredient(db, recipeId, "flour", 125, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 125, "ml");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+
+
+    // 12. Cheese Fritters
+    recipeId = addRecipe(
+        db,
+        "Cheese Fritters",
+        "Mix the ingredients well. Spoon portions of the mixture "
+            + "into hot oil and fry until golden brown."
+    );
+
+    addRecipeIngredient(db, recipeId, "cheese", 250, "g");
+    addRecipeIngredient(db, recipeId, "flour", 125, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 125, "ml");
+
+
+    // 13. Chicken Fritters
+    recipeId = addRecipe(
+        db,
+        "Chicken Fritters",
+        "Combine the chicken with the batter ingredients. "
+            + "Drop spoonfuls into hot oil and fry until "
+            + "golden and cooked through."
+    );
+
+    addRecipeIngredient(db, recipeId, "chicken", 250, "g");
+    addRecipeIngredient(db, recipeId, "flour", 125, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 125, "ml");
+
+
+    // 14. Cheese and Ham Fritters
+    recipeId = addRecipe(
+        db,
+        "Cheese and Ham Fritters",
+        "Mix all the ingredients together. Spoon portions into "
+            + "hot oil and fry until golden brown."
+    );
+
+    addRecipeIngredient(db, recipeId, "cheese", 125, "g");
+    addRecipeIngredient(db, recipeId, "ham", 125, "g");
+    addRecipeIngredient(db, recipeId, "flour", 125, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 125, "ml");
+
+
+    // 15. Cheese and Bacon Fritters
+    recipeId = addRecipe(
+        db,
+        "Cheese and Bacon Fritters",
+        "Combine all ingredients. Drop spoonfuls into hot oil "
+            + "and fry until crisp and golden."
+    );
+
+    addRecipeIngredient(db, recipeId, "cheese", 125, "g");
+    addRecipeIngredient(db, recipeId, "bacon", 125, "g");
+    addRecipeIngredient(db, recipeId, "flour", 125, "ml");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 125, "ml");
+
+
+    // 16. Savoury Meatballs
+    recipeId = addRecipe(
+        db,
+        "Savoury Meatballs",
+        "Combine the meat, egg and seasoning. Shape into balls "
+            + "and cook until browned and cooked through."
+    );
+
+    addRecipeIngredient(db, recipeId, "minced meat", 500, "g");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+    addRecipeIngredient(db, recipeId, "breadcrumbs", 100, "ml");
+
+
+    // 17. Cheese Meatballs
+    recipeId = addRecipe(
+        db,
+        "Cheese Meatballs",
+        "Mix the ingredients together, shape into small balls "
+            + "and cook until browned and cooked through."
+    );
+
+    addRecipeIngredient(db, recipeId, "minced meat", 500, "g");
+    addRecipeIngredient(db, recipeId, "cheese", 100, "g");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+
+
+    // 18. Bacon Meatballs
+    recipeId = addRecipe(
+        db,
+        "Bacon Meatballs",
+        "Combine the minced meat, bacon and remaining ingredients. "
+            + "Shape into balls and cook until browned."
+    );
+
+    addRecipeIngredient(db, recipeId, "minced meat", 500, "g");
+    addRecipeIngredient(db, recipeId, "bacon", 125, "g");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+
+
+    // 19. Weense Sausage Tart
+    recipeId = addRecipe(
+        db,
+        "Vienna Sausage Tart",
+        "Fry the onion in oil and add the milk. Bring to the boil. "
+            + "Add the remaining ingredients, mix well and pour "
+            + "into a greased ovenproof dish. Bake until set."
+    );
+
+    addRecipeIngredient(db, recipeId, "vienna sausage", 375, "g");
+    addRecipeIngredient(db, recipeId, "onion", 1, "item");
+    addRecipeIngredient(db, recipeId, "milk", 285, "ml");
+    addRecipeIngredient(db, recipeId, "tomato", 2, "item");
+    addRecipeIngredient(db, recipeId, "cheese", 125, "g");
+    addRecipeIngredient(db, recipeId, "egg", 1, "item");
+
+
+    // 20. Aspic Meat Tart
+    recipeId = addRecipe(
+        db,
+        "Aspic Meat Tart",
+        "Mix the gelatin with cold water and dissolve it in boiling "
+            + "water. Add the remaining ingredients. Pour into "
+            + "a mould and refrigerate until set."
+    );
+
+    addRecipeIngredient(db, recipeId, "gelatin", 20, "g");
+    addRecipeIngredient(db, recipeId, "water", 375, "ml");
+    addRecipeIngredient(db, recipeId, "cooked meat", 500, "g");
     addRecipeIngredient(db, recipeId, "tomato", 2, "item");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
-    addRecipeIngredient(db, recipeId, "oil", 10, "ml");
+  }
 
+//  Seed pantry items
+  private void seedPantry(SQLiteDatabase db) {
+    addSeedPantryItem(db, "Egg", 6, "item");
+    addSeedPantryItem(db, "Milk", 2, "L");
+    addSeedPantryItem(db, "Cheese", 500, "g");
+    addSeedPantryItem(db, "Onion", 4, "item");
+    addSeedPantryItem(db, "Minced meat", 1000, "g");
+    addSeedPantryItem(db, "Bacon", 300, "g");
+    addSeedPantryItem(db, "Tomato", 4, "item");
+  }
 
-    // 20. Cheese Scrambled Eggs
-    recipeId = addRecipe(db,
-        "Cheese Scrambled Eggs",
-        "Beat the eggs with milk. Cook gently in butter, " +
-            "then stir in cheese before serving.");
-
-    addRecipeIngredient(db, recipeId, "egg", 2, "item");
-    addRecipeIngredient(db, recipeId, "milk", 50, "ml");
-    addRecipeIngredient(db, recipeId, "butter", 10, "g");
-    addRecipeIngredient(db, recipeId, "cheese", 40, "g");
+  private void addSeedPantryItem(
+      SQLiteDatabase db,
+      String name,
+      double quantity,
+      String unit) {
+    ContentValues values = new ContentValues();
+    values.put(COLUMN_NAME, name);
+    values.put(COLUMN_QUANTITY, quantity);
+    values.put(COLUMN_UNIT, unit);
+    db.insert(TABLE_PANTRY, null, values);
   }
 
   public List<Recipe> getAllRecipes() {
-
     List<Recipe> recipes = new ArrayList<>();
-
     SQLiteDatabase db = this.getReadableDatabase();
-
     Cursor cursor = db.query(
         TABLE_RECIPES,
         null,
