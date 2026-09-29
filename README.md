@@ -12,18 +12,18 @@ The application help to track pantry items that you have and gives suggested rec
 - You can choose to hide the expiry date from the settings
 - Show a list of suggested recipes that you have the ingredients for based off of strict matching
 - converts basic singular and plurals for matches in units
-- Does basic unit conversion kg to g and litres to ml
-- You are able to view the ingredients and step to make the recipe
-- it has persistant local storage
+- Does basic unit conversion kg to g and litre to ml
+- You are able to view the ingredients and steps to make the recipe
+- it has persistent local storage
 
 ## Recipe Matching
 Only recipes that all the ingredients are present for with enough quantity will be suggested
-Matching does convertions on compatible units.
+Matching does conversions on compatible units.
 
 ## Database
 The database is a SQLite database
 SQL was selected as it only have to store data locally on the device and it has a small footprint
-It can provide persistant storage even after the application is closed
+It can provide persistent storage even after the application is closed
 Table include
 - Pantry items
 - Recipes

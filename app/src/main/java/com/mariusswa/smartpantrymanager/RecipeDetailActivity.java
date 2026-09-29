@@ -72,8 +72,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
           .append(ingredient.getUnit())
           .append("\n");
     }
-    // return suggested recipes screen
+    // display suggested recipes on screen
     tvIngredients.setText(ingredientText.toString());
   }
-
 }

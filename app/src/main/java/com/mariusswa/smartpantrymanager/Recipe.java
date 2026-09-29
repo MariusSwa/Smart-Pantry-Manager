@@ -2,7 +2,7 @@ package com.mariusswa.smartpantrymanager;
 
 public class Recipe {
 
-// store a recipe to the database
+// recipe object
   private int id;
   private String name;
   private String instructions;
