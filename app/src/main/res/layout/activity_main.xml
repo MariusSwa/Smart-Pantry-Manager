@@ -4,83 +4,78 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pantry_light_pink"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/pantry_light_pink"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="My Pantry"
-        android:textColor="#E91E63"
+        android:textColor="@color/pantry_pink"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvSubtitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
+        android:gravity="center"
         android:text="Keep track of the ingredients you have available."
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvEmptyPantry"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Your pantry is empty.&#10;Add an ingredient to get started."
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:layout_weight="1">
 
-    <ListView
-        android:id="@+id/listPantry"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvEmptyPantry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Your pantry is empty.&#10;Add an ingredient to get started."
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btnSuggestedRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:backgroundTint="#E91E63"
-        android:textColor="#FFFFFF"
-        android:text="View Suggested Recipes" />
+        <ListView
+            android:id="@+id/listPantry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
-    <Button
-        android:id="@+id/btnAddIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:backgroundTint="#E91E63"
-        android:textColor="#FFFFFF"
-        android:text="Add Ingredient" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btnSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/pantry_pink"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:text="Settings"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnSuggestedRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/pantry_pink"
+        android:text="View Suggested Recipes"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnAddIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/pantry_pink"
+        android:text="Add Ingredient"
         android:textColor="#FFFFFF" />
 
 </LinearLayout>
