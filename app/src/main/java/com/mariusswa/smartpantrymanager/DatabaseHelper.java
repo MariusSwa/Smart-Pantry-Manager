@@ -1,5 +1,5 @@
 package com.mariusswa.smartpantrymanager;
-
+// Load all imports
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,20 +8,21 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+// Database helper class to store and fetch data from the database
 public class DatabaseHelper extends SQLiteOpenHelper {
-
   //  Database name
   private static final String DATABASE_NAME = "smart_pantry.db";
   // Use versioning to add table later and keep the data present
   private static final int DATABASE_VERSION = 5;
 
+  // Pantry table to store ingredients
   public static final String TABLE_PANTRY = "pantry";
-
   public static final String COLUMN_ID = "id";
   public static final String COLUMN_NAME = "name";
   public static final String COLUMN_QUANTITY = "quantity";
   public static final String COLUMN_UNIT = "unit";
   public static final String COLUMN_EXPIRY_DATE = "expiry_date";
+
 
   public DatabaseHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-  //  Patnry table
+  //  Pantry table
     String createPantryTable =
         "CREATE TABLE " + TABLE_PANTRY + " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -38,8 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_UNIT + " TEXT NOT NULL, " +
             COLUMN_EXPIRY_DATE + " TEXT" +
             ")";
-
+    // Execute the creation table
     db.execSQL(createPantryTable);
+
     //    Recipe Table
     String createRecipesTable =
         "CREATE TABLE " + TABLE_RECIPES + " (" +
@@ -47,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_RECIPE_NAME + " TEXT NOT NULL, " +
             COLUMN_INSTRUCTIONS + " TEXT NOT NULL" +
             ")";
-
+    // Create recipe table
     db.execSQL(createRecipesTable);
 
     //  Ingredients Table
@@ -61,14 +63,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "FOREIGN KEY (" + COLUMN_RECIPE_FOREIGN_ID + ") REFERENCES " +
             TABLE_RECIPES + "(" + COLUMN_RECIPE_ID + ")" +
             ")";
-
+    // Create Recipe ingredients table
     db.execSQL(createRecipeIngredientsTable);
 
+    // Add the table seeds
     seedRecipes(db);
     seedPantry(db);
   }
 
-  //  Runs the upgrade for the DB
+  // Run the upgrade for the DB
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE_INGREDIENTS);
@@ -77,6 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     onCreate(db);
   }
 
+  // Add pantry items
   public long addPantryItem(String name, double quantity, String unit, String expiryDate) {
     SQLiteDatabase db = this.getWritableDatabase();
     ContentValues values = new ContentValues();
@@ -94,11 +98,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     return result;
   }
 
+  // Recipe table strings
   public static final String TABLE_RECIPES = "recipes";
   public static final String COLUMN_RECIPE_ID = "id";
   public static final String COLUMN_RECIPE_NAME = "name";
   public static final String COLUMN_INSTRUCTIONS = "instructions";
 
+  // Recipe ingredient table strings
   public static final String TABLE_RECIPE_INGREDIENTS = "recipe_ingredients";
   public static final String COLUMN_RECIPE_INGREDIENT_ID = "id";
   public static final String COLUMN_RECIPE_FOREIGN_ID = "recipe_id";
@@ -106,6 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   public static final String COLUMN_REQUIRED_QUANTITY = "quantity";
   public static final String COLUMN_REQUIRED_UNIT = "unit";
 
+  // Get all items from the pantry
   public List<PantryItem> getAllPantryItems() {
     List<PantryItem> pantryItems = new ArrayList<>();
     SQLiteDatabase db = this.getReadableDatabase();
@@ -148,15 +155,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             unit,
             expiryDate
         );
-
         pantryItems.add(item);
       } while (cursor.moveToNext());
     }
-
     cursor.close();
     return pantryItems;
   }
 
+  // Delete a pantry item
   public int deletePantryItem(int id) {
     SQLiteDatabase db = this.getWritableDatabase();
     int result = db.delete(
@@ -168,6 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     return result;
   }
 
+  // Update a pantry items
   public int updatePantryItem(int id, String name, double quantity,
                               String unit, String expiryDate) {
     SQLiteDatabase db = this.getWritableDatabase();
@@ -192,30 +199,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     return result;
   }
 
+  // Add a recipe
   private long addRecipe(SQLiteDatabase db, String name, String instructions) {
-
     ContentValues values = new ContentValues();
     values.put(COLUMN_RECIPE_NAME, name);
     values.put(COLUMN_INSTRUCTIONS, instructions);
-
     return db.insert(TABLE_RECIPES, null, values);
   }
 
+  // Add recipe ingredients
   private void addRecipeIngredient(SQLiteDatabase db, long recipeId,
-                                   String ingredientName, double quantity,
-                                   String unit) {
-
-    ContentValues values = new ContentValues();
-    values.put(COLUMN_RECIPE_FOREIGN_ID, recipeId);
-    values.put(COLUMN_INGREDIENT_NAME, ingredientName);
-    values.put(COLUMN_REQUIRED_QUANTITY, quantity);
-    values.put(COLUMN_REQUIRED_UNIT, unit);
-
-    db.insert(TABLE_RECIPE_INGREDIENTS, null, values);
+   String ingredientName, double quantity, String unit) {
+      ContentValues values = new ContentValues();
+      values.put(COLUMN_RECIPE_FOREIGN_ID, recipeId);
+      values.put(COLUMN_INGREDIENT_NAME, ingredientName);
+      values.put(COLUMN_REQUIRED_QUANTITY, quantity);
+      values.put(COLUMN_REQUIRED_UNIT, unit);
+      db.insert(TABLE_RECIPE_INGREDIENTS, null, values);
   }
 
+  // The database recipe seeds
   private void seedRecipes(SQLiteDatabase db) {
-
     long recipeId;
 
     // 1. Cheese and Ham Tart
@@ -236,7 +240,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "cheese", 250, "g");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
 
-
     // 2. Cheese and Bacon Tart
     recipeId = addRecipe(
         db,
@@ -254,7 +257,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "cheese", 100, "g");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
 
-
     // 3. Cheese Meat Tart
     recipeId = addRecipe(
         db,
@@ -268,7 +270,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "cheese", 250, "g");
     addRecipeIngredient(db, recipeId, "milk", 500, "ml");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
-
 
     // 4. Meat Pizza
     recipeId = addRecipe(
@@ -287,7 +288,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
     addRecipeIngredient(db, recipeId, "cheese", 125, "g");
 
-
     // 5. Meat Pie
     recipeId = addRecipe(
         db,
@@ -303,7 +303,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "milk", 250, "ml");
     addRecipeIngredient(db, recipeId, "cheese", 100, "g");
 
-
     // 6. Cheese Pie
     recipeId = addRecipe(
         db,
@@ -316,7 +315,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "milk", 250, "ml");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
     addRecipeIngredient(db, recipeId, "flour", 125, "ml");
-
 
     // 7. Chicken Pie
     recipeId = addRecipe(
@@ -333,7 +331,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
     addRecipeIngredient(db, recipeId, "cheese", 100, "g");
 
-
     // 8. Cheese and Onion Pie
     recipeId = addRecipe(
         db,
@@ -347,7 +344,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "onion", 2, "item");
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
     addRecipeIngredient(db, recipeId, "milk", 250, "ml");
-
 
     // 9. Mackerel Dish
     recipeId = addRecipe(
@@ -363,7 +359,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "egg", 2, "item");
     addRecipeIngredient(db, recipeId, "milk", 250, "ml");
 
-
     // 10. Ham Rolls
     recipeId = addRecipe(
         db,
@@ -376,7 +371,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "ham", 250, "g");
     addRecipeIngredient(db, recipeId, "cheese", 100, "g");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
-
 
     // 11. Meat Fritters
     recipeId = addRecipe(
@@ -393,7 +387,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "milk", 125, "ml");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
 
-
     // 12. Cheese Fritters
     recipeId = addRecipe(
         db,
@@ -406,7 +399,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "flour", 125, "ml");
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "milk", 125, "ml");
-
 
     // 13. Chicken Fritters
     recipeId = addRecipe(
@@ -422,7 +414,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "milk", 125, "ml");
 
-
     // 14. Cheese and Ham Fritters
     recipeId = addRecipe(
         db,
@@ -436,7 +427,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "flour", 125, "ml");
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "milk", 125, "ml");
-
 
     // 15. Cheese and Bacon Fritters
     recipeId = addRecipe(
@@ -452,7 +442,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "milk", 125, "ml");
 
-
     // 16. Savoury Meatballs
     recipeId = addRecipe(
         db,
@@ -465,7 +454,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
     addRecipeIngredient(db, recipeId, "breadcrumbs", 100, "ml");
-
 
     // 17. Cheese Meatballs
     recipeId = addRecipe(
@@ -480,7 +468,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
 
-
     // 18. Bacon Meatballs
     recipeId = addRecipe(
         db,
@@ -493,7 +480,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "bacon", 125, "g");
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
-
 
     // 19. Weense Sausage Tart
     recipeId = addRecipe(
@@ -511,7 +497,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "cheese", 125, "g");
     addRecipeIngredient(db, recipeId, "egg", 1, "item");
 
-
     // 20. Aspic Meat Tart
     recipeId = addRecipe(
         db,
@@ -528,7 +513,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addRecipeIngredient(db, recipeId, "onion", 1, "item");
   }
 
-//  Seed pantry items
+  // Seed pantry items
   private void seedPantry(SQLiteDatabase db) {
     addSeedPantryItem(db, "Egg", 6, "item");
     addSeedPantryItem(db, "Milk", 2, "L");
@@ -539,6 +524,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     addSeedPantryItem(db, "Tomato", 4, "item");
   }
 
+  // Method to add pantry seeds
   private void addSeedPantryItem(
       SQLiteDatabase db,
       String name,
@@ -551,6 +537,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     db.insert(TABLE_PANTRY, null, values);
   }
 
+  // Get all the recipes from the db
   public List<Recipe> getAllRecipes() {
     List<Recipe> recipes = new ArrayList<>();
     SQLiteDatabase db = this.getReadableDatabase();
@@ -586,12 +573,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     return recipes;
   }
 
+  // Get the recipe ingredients
   public List<RecipeIngredient> getRecipeIngredients(int recipeId) {
-
     List<RecipeIngredient> ingredients = new ArrayList<>();
-
     SQLiteDatabase db = this.getReadableDatabase();
-
     Cursor cursor = db.query(
         TABLE_RECIPE_INGREDIENTS,
         null,
@@ -603,9 +588,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     );
 
     if (cursor.moveToFirst()) {
-
       do {
-
         int id = cursor.getInt(
             cursor.getColumnIndexOrThrow(COLUMN_RECIPE_INGREDIENT_ID)
         );
@@ -638,6 +621,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     return ingredients;
   }
 
+  // Get suggested recipe list
   public List<Recipe> getSuggestedRecipes() {
     List<Recipe> suggestedRecipes = new ArrayList<>();
     List<Recipe> allRecipes = getAllRecipes();

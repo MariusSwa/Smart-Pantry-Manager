@@ -1,7 +1,7 @@
 package com.mariusswa.smartpantrymanager;
 
+// Imports
 import android.os.Bundle;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -15,14 +15,10 @@ import android.widget.TextView;
 import java.util.List;
 import androidx.appcompat.app.AlertDialog;
 import android.widget.Toast;
-
 import android.util.Log;
 
-
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
-
+    // On creeate when the window opens
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
             );
             return insets;
         });
+
+        // Add ingredient button
         Button btnAddIngredient = findViewById(R.id.btnAddIngredient);
         btnAddIngredient.setOnClickListener(v -> {
             Intent intent =
@@ -45,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Suggested recipes button
         Button btnSuggestedRecipes =
             findViewById(R.id.btnSuggestedRecipes);
         btnSuggestedRecipes.setOnClickListener(v -> {
-
             Intent intent = new Intent(
                 MainActivity.this,
                 SuggestedRecipesActivity.class
@@ -58,48 +56,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-
         List<Recipe> recipes = databaseHelper.getAllRecipes();
-
         Log.d("RECIPE_TEST", "Number of recipes: " + recipes.size());
-
         for (Recipe recipe : recipes) {
             Log.d("RECIPE_TEST", recipe.getName());
         }
 
+        // Settings button
         Button btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(v -> {
 
+            // intents to move to new window
             Intent intent = new Intent(
                 MainActivity.this,
                 SettingsActivity.class
             );
-
             startActivity(intent);
         });
     }
 
+    // When we come back to the main screen
     @Override
     protected void onResume() {
         super.onResume();
         loadPantryItems();
-
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-
         List<Recipe> suggestedRecipes =
             databaseHelper.getSuggestedRecipes();
-
         Log.d(
             "MATCH_TEST",
             "Suggested recipes: " + suggestedRecipes.size()
         );
-
         for (Recipe recipe : suggestedRecipes) {
             Log.d("MATCH_TEST", recipe.getName());
         }
-
     }
 
+    // Load the pantry items
     private void loadPantryItems() {
         TextView tvEmptyPantry = findViewById(R.id.tvEmptyPantry);
         ListView listPantry = findViewById(R.id.listPantry);
@@ -107,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         List<PantryItem> pantryItems =
             databaseHelper.getAllPantryItems();
 
+        // If there is no pantry items
         if (pantryItems.isEmpty()) {
             tvEmptyPantry.setVisibility(View.VISIBLE);
             listPantry.setVisibility(View.GONE);
@@ -115,12 +109,9 @@ public class MainActivity extends AppCompatActivity {
             listPantry.setVisibility(View.VISIBLE);
             PantryAdapter adapter =
                 new PantryAdapter(this, pantryItems);
-
             listPantry.setAdapter(adapter);
 
-            listPantry.setAdapter(adapter);
-
-//          Tap to edit item
+            // Tap to edit item
             listPantry.setOnItemClickListener((parent, view, position, id) -> {
                 PantryItem selectedItem = pantryItems.get(position);
                 Intent intent = new Intent(
@@ -164,8 +155,4 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-
-
-
-
 }

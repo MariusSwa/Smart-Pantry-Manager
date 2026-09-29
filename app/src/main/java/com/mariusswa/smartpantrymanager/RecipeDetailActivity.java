@@ -1,14 +1,14 @@
 package com.mariusswa.smartpantrymanager;
 
+// Imports to use
 import android.os.Bundle;
 import android.widget.TextView;
-
+import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.util.List;
 
 public class RecipeDetailActivity extends AppCompatActivity {
@@ -16,7 +16,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     EdgeToEdge.enable(this);
     setContentView(R.layout.activity_recipe_detail);
 
@@ -44,12 +43,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
     TextView tvIngredients = findViewById(R.id.tvIngredients);
     TextView tvInstructions = findViewById(R.id.tvInstructions);
 
+    Button btnBack = findViewById(R.id.btnBack);
+    btnBack.setOnClickListener(v -> finish());
+
     int recipeId = getIntent().getIntExtra("RECIPE_ID", -1);
     String recipeName = getIntent().getStringExtra("RECIPE_NAME");
     String instructions = getIntent().getStringExtra("RECIPE_INSTRUCTIONS");
 
     tvRecipeName.setText(recipeName);
     tvInstructions.setText(instructions);
+
 
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
@@ -69,7 +72,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
           .append(ingredient.getUnit())
           .append("\n");
     }
-
     tvIngredients.setText(ingredientText.toString());
   }
+
 }

@@ -2,6 +2,7 @@ package com.mariusswa.smartpantrymanager;
 
 public class Recipe {
 
+
   private int id;
   private String name;
   private String instructions;

@@ -8,8 +8,8 @@ public class PantryItem {
   private String unit;
   private String expiryDate;
 
-  public PantryItem(int id, String name, double quantity,
-                    String unit, String expiryDate) {
+  // Pantry item
+  public PantryItem(int id, String name, double quantity, String unit, String expiryDate) {
     this.id = id;
     this.name = name;
     this.quantity = quantity;
@@ -17,26 +17,32 @@ public class PantryItem {
     this.expiryDate = expiryDate;
   }
 
+  // Get pantry id
   public int getId() {
     return id;
   }
 
+  //Get pantry name
   public String getName() {
     return name;
   }
 
+  //Get pantry qty
   public double getQuantity() {
     return quantity;
   }
 
+  // Get pantry units
   public String getUnit() {
     return unit;
   }
 
+  // Get pantry expiry date
   public String getExpiryDate() {
     return expiryDate;
   }
 
+  // Override the string
   @Override
   public String toString() {
     return name + " - " + quantity + " " + unit;

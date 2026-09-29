@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Preparation"
+            android:text="@string/preparation"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -51,6 +51,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/pantry_pink"
+            android:text="Back to Recipes"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

@@ -1,5 +1,5 @@
 package com.mariusswa.smartpantrymanager;
-
+// Imports
 import java.util.List;
 
 public class RecipeMatcher {
