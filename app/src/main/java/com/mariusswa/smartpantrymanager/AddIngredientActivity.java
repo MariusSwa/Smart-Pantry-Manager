@@ -26,8 +26,6 @@ public class AddIngredientActivity extends AppCompatActivity {
     private EditText etExpiryDate;
     private int editingItemId = -1;
 
-
-
     // On create creates the layout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
