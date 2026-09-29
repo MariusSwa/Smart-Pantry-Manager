@@ -1,5 +1,6 @@
 package com.mariusswa.smartpantrymanager;
 
+// ingradient model
 public class RecipeIngredient {
 
   private int id;
@@ -8,8 +9,7 @@ public class RecipeIngredient {
   private double quantity;
   private String unit;
 
-  public RecipeIngredient(int id, int recipeId, String ingredientName,
-                          double quantity, String unit) {
+  public RecipeIngredient(int id, int recipeId, String ingredientName, double quantity, String unit) {
     this.id = id;
     this.recipeId = recipeId;
     this.ingredientName = ingredientName;

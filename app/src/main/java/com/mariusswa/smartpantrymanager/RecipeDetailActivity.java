@@ -1,5 +1,4 @@
 package com.mariusswa.smartpantrymanager;
-
 // Imports to use
 import android.os.Bundle;
 import android.widget.TextView;
@@ -46,6 +45,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     Button btnBack = findViewById(R.id.btnBack);
     btnBack.setOnClickListener(v -> finish());
 
+    // Get recipe details from suggested recipe
     int recipeId = getIntent().getIntExtra("RECIPE_ID", -1);
     String recipeName = getIntent().getStringExtra("RECIPE_NAME");
     String instructions = getIntent().getStringExtra("RECIPE_INSTRUCTIONS");
@@ -53,16 +53,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
     tvRecipeName.setText(recipeName);
     tvInstructions.setText(instructions);
 
-
+    // Load ingredients for recipe
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
     List<RecipeIngredient> ingredients =
         databaseHelper.getRecipeIngredients(recipeId);
 
+    // build recipe list
     StringBuilder ingredientText = new StringBuilder();
-
+    // for each ingredient get values
     for (RecipeIngredient ingredient : ingredients) {
-
       ingredientText
           .append("• ")
           .append(ingredient.getIngredientName())
@@ -72,6 +72,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
           .append(ingredient.getUnit())
           .append("\n");
     }
+    // return suggested recipes screen
     tvIngredients.setText(ingredientText.toString());
   }
 

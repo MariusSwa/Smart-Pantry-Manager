@@ -15,7 +15,6 @@ import android.widget.TextView;
 import java.util.List;
 import androidx.appcompat.app.AlertDialog;
 import android.widget.Toast;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     // On creeate when the window opens
@@ -55,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        List<Recipe> recipes = databaseHelper.getAllRecipes();
-        Log.d("RECIPE_TEST", "Number of recipes: " + recipes.size());
-        for (Recipe recipe : recipes) {
-            Log.d("RECIPE_TEST", recipe.getName());
-        }
-
         // Settings button
         Button btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(v -> {
@@ -80,16 +72,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadPantryItems();
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        List<Recipe> suggestedRecipes =
-            databaseHelper.getSuggestedRecipes();
-        Log.d(
-            "MATCH_TEST",
-            "Suggested recipes: " + suggestedRecipes.size()
-        );
-        for (Recipe recipe : suggestedRecipes) {
-            Log.d("MATCH_TEST", recipe.getName());
-        }
     }
 
     // Load the pantry items

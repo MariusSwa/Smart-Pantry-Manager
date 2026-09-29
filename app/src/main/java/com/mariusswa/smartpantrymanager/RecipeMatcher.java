@@ -2,29 +2,35 @@ package com.mariusswa.smartpantrymanager;
 // Imports
 import java.util.List;
 
+// File used for strict matching
 public class RecipeMatcher {
 
+  // Checks every ingredient in the pantry against the recipes
   public static boolean canMakeRecipe(
       Recipe recipe,
       List<RecipeIngredient> requiredIngredients,
       List<PantryItem> pantryItems) {
 
+    // Check ingredient required by a recipe
     for (RecipeIngredient required : requiredIngredients) {
 
       boolean ingredientFound = false;
 
       for (PantryItem pantryItem : pantryItems) {
 
+        // check if the ingredient name matches
         if (namesMatch(
             pantryItem.getName(),
             required.getIngredientName())) {
 
+          // simplifies ingredient quantity
           double pantryQuantity = convertQuantity(
               pantryItem.getQuantity(),
               pantryItem.getUnit(),
               required.getUnit()
           );
 
+          // check if there is enough of the ingredient
           if (pantryQuantity >= required.getQuantity()) {
             ingredientFound = true;
             break;
@@ -32,24 +38,25 @@ public class RecipeMatcher {
         }
       }
 
+      // rejects the recipe if a ingredient is not enough
       if (!ingredientFound) {
         return false;
       }
     }
 
+    // the ingredient is there and has enough qty
     return true;
   }
 
+  // normalise ingredient names for plurals
   private static boolean namesMatch(String pantryName, String requiredName) {
-
     String pantry = normalizeName(pantryName);
     String required = normalizeName(requiredName);
-
     return pantry.equals(required);
   }
 
+  // convert to lower case, remove spaces
   private static String normalizeName(String name) {
-
     String normalized = name
         .trim()
         .toLowerCase();
@@ -65,6 +72,7 @@ public class RecipeMatcher {
     return normalized;
   }
 
+  // Check for compatible units
   private static double convertQuantity(
       double quantity,
       String fromUnit,
@@ -90,7 +98,6 @@ public class RecipeMatcher {
     // Litres to millilitres
     if ((from.equals("l") || from.equals("litre") || from.equals("liter"))
         && to.equals("ml")) {
-
       return quantity * 1000;
     }
 
@@ -108,14 +115,12 @@ public class RecipeMatcher {
         || from.equals("piece")
         || from.equals("pieces"))
         && to.equals("item")) {
-
       return quantity;
     }
 
     // Common slice terminology
     if ((from.equals("slice") || from.equals("slices"))
         && to.equals("slice")) {
-
       return quantity;
     }
 

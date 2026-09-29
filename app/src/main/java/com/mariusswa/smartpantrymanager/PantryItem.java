@@ -1,5 +1,6 @@
 package com.mariusswa.smartpantrymanager;
 
+// used to store one pantry ingedient
 public class PantryItem {
 
   private int id;
@@ -8,7 +9,7 @@ public class PantryItem {
   private String unit;
   private String expiryDate;
 
-  // Pantry item
+  // Pantry item creation
   public PantryItem(int id, String name, double quantity, String unit, String expiryDate) {
     this.id = id;
     this.name = name;

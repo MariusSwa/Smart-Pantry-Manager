@@ -1,5 +1,5 @@
 package com.mariusswa.smartpantrymanager;
-
+// imnports
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,38 +25,37 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
     ViewCompat.setOnApplyWindowInsetsListener(
         findViewById(R.id.main),
         (v, insets) -> {
-
           Insets systemBars =
               insets.getInsets(
                   WindowInsetsCompat.Type.systemBars()
               );
-
           v.setPadding(
               systemBars.left,
               systemBars.top,
               systemBars.right,
               systemBars.bottom
           );
-
           return insets;
         }
     );
+
+    // display suggested recipes
     loadSuggestedRecipes();
 
+    // Back button
     Button btnBack = findViewById(R.id.btnBack);
-
     btnBack.setOnClickListener(v -> finish());
   }
 
   private void loadSuggestedRecipes() {
-    TextView tvNoRecipes =
-        findViewById(R.id.tvNoRecipes);
-    ListView listRecipes =
-        findViewById(R.id.listRecipes);
-    DatabaseHelper databaseHelper =
-        new DatabaseHelper(this);
-    List<Recipe> recipes =
-        databaseHelper.getSuggestedRecipes();
+    TextView tvNoRecipes = findViewById(R.id.tvNoRecipes);
+    ListView listRecipes = findViewById(R.id.listRecipes);
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+    // Load suggested recipes
+    List<Recipe> recipes = databaseHelper.getSuggestedRecipes();
+
+    // if recipes are empty
     if (recipes.isEmpty()) {
       tvNoRecipes.setVisibility(View.VISIBLE);
       listRecipes.setVisibility(View.GONE);
@@ -71,11 +70,12 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
               recipes
           );
 
+      // display matching recipes
       listRecipes.setAdapter(adapter);
+      // show selected recipe
       listRecipes.setOnItemClickListener((parent, view, position, id) -> {
-
         Recipe selectedRecipe = recipes.get(position);
-
+        // intent to show recipe
         Intent intent = new Intent(
             SuggestedRecipesActivity.this,
             RecipeDetailActivity.class
@@ -83,11 +83,9 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
         intent.putExtra("RECIPE_ID", selectedRecipe.getId());
         intent.putExtra("RECIPE_NAME", selectedRecipe.getName());
-        intent.putExtra(
-            "RECIPE_INSTRUCTIONS",
-            selectedRecipe.getInstructions()
-        );
+        intent.putExtra("RECIPE_INSTRUCTIONS", selectedRecipe.getInstructions());
 
+        //
         startActivity(intent);
       });
     }
