@@ -4,48 +4,51 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pantry_light_pink"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/pantry_light_pink"
-    tools:context=".SuggestedRecipesActivity">
+    tools:context=".SettingsActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Suggested Recipes"
-        android:textSize="28sp"
+        android:gravity="center"
+        android:text="Settings"
+        android:textColor="@color/pantry_pink"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="Recipes you can make with your current pantry."
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="Manage your Smart Pantry preferences"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvNoRecipes"
+    <Switch
+        android:id="@+id/switchShowExpiry"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="No recipes match your pantry yet."
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:layout_height="wrap_content"
+        android:text="Show expiry dates"
+        android:textSize="17sp" />
 
-    <ListView
-        android:id="@+id/listRecipes"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Show or hide expiry dates on pantry items."
+        android:textSize="14sp" />
+    <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="gone" />
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:backgroundTint="@color/pantry_pink"
         android:text="Back to Pantry"
         android:textColor="#FFFFFF" />

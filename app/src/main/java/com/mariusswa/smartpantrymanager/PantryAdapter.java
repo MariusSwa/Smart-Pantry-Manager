@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
+import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -51,11 +51,27 @@ public class PantryAdapter extends ArrayAdapter<PantryItem> {
               + pantryItem.getUnit()
       );
 
+      SharedPreferences preferences =
+          getContext().getSharedPreferences(
+              SettingsActivity.PREFS_NAME,
+              Context.MODE_PRIVATE
+          );
+
+      boolean showExpiry =
+          preferences.getBoolean(
+              SettingsActivity.KEY_SHOW_EXPIRY,
+              true
+          );
+
       String expiryDate = pantryItem.getExpiryDate();
 
-      if (expiryDate != null && !expiryDate.trim().isEmpty()) {
+      if (showExpiry
+          && expiryDate != null
+          && !expiryDate.trim().isEmpty()) {
+
         tvExpiry.setText("Expires: " + expiryDate);
         tvExpiry.setVisibility(View.VISIBLE);
+
       } else {
         tvExpiry.setVisibility(View.GONE);
       }

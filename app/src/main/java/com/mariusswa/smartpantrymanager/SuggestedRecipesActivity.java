@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -42,6 +42,10 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         }
     );
     loadSuggestedRecipes();
+
+    Button btnBack = findViewById(R.id.btnBack);
+
+    btnBack.setOnClickListener(v -> finish());
   }
 
   private void loadSuggestedRecipes() {

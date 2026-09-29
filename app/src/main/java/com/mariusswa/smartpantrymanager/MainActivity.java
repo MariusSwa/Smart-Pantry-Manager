@@ -66,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
         for (Recipe recipe : recipes) {
             Log.d("RECIPE_TEST", recipe.getName());
         }
+
+        Button btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                MainActivity.this,
+                SettingsActivity.class
+            );
+
+            startActivity(intent);
+        });
     }
 
     @Override
