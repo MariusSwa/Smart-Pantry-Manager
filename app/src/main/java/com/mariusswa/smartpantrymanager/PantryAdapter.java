@@ -17,7 +17,6 @@ public class PantryAdapter extends ArrayAdapter<PantryItem> {
     super(context, 0, pantryItems);
   }
 
-
   @NonNull
   @Override
   public View getView(

@@ -11,18 +11,14 @@ public class RecipeMatcher {
       List<RecipeIngredient> requiredIngredients,
       List<PantryItem> pantryItems) {
 
-    // Check ingredient required by a recipe
+    // Check ingredients required by a recipe
     for (RecipeIngredient required : requiredIngredients) {
-
       boolean ingredientFound = false;
-
       for (PantryItem pantryItem : pantryItems) {
-
         // check if the ingredient name matches
         if (namesMatch(
             pantryItem.getName(),
             required.getIngredientName())) {
-
           // simplifies ingredient quantity
           double pantryQuantity = convertQuantity(
               pantryItem.getQuantity(),
@@ -96,16 +92,12 @@ public class RecipeMatcher {
     }
 
     // Litres to millilitres
-    if ((from.equals("l") || from.equals("litre") || from.equals("liter"))
-        && to.equals("ml")) {
+    if ((from.equals("l") || from.equals("litre") || from.equals("liter")) && to.equals("ml")) {
       return quantity * 1000;
     }
 
     // Millilitres to litres
-    if (from.equals("ml")
-        && (to.equals("l")
-        || to.equals("litre")
-        || to.equals("liter"))) {
+    if (from.equals("ml") && (to.equals("l") || to.equals("litre") || to.equals("liter"))) {
       return quantity / 1000;
     }
 

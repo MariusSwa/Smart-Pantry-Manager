@@ -84,8 +84,6 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         intent.putExtra("RECIPE_ID", selectedRecipe.getId());
         intent.putExtra("RECIPE_NAME", selectedRecipe.getName());
         intent.putExtra("RECIPE_INSTRUCTIONS", selectedRecipe.getInstructions());
-
-        //
         startActivity(intent);
       });
     }
